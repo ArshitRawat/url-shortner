@@ -45,7 +45,7 @@
       const longURL = document.getElementById("longURL").value;
       if (!longURL) return alert("Please enter a URL");
 
-      const res = await fetch("http://127.0.0.1:8000/shorten", {
+      const res = await fetch("http://34.121.41.174:5000/shorten", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ longURL })
@@ -53,13 +53,13 @@
 
       const data = await res.json();
       if (data.short_url) {
-        const shortLink = `http://127.0.0.1:8000/${data.short_url}`;
+        const shortLink = `http://34.121.41.174:5000/${data.short_url}`;
         
         document.getElementById("result").classList.remove("hidden");
         document.getElementById("shortURL").href = shortLink;
         document.getElementById("shortURL").textContent = shortLink;
 
-        const analyticsRes = await fetch(`http://127.0.0.1:8000/analytics/${data.short_url}`);
+        const analyticsRes = await fetch(`http://34.121.41.174:5000/analytics/${data.short_url}`);
         const stats = await analyticsRes.json();
         
         if (stats.clicks !== undefined) {
